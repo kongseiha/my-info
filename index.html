@@ -31,6 +31,37 @@
 </head>
 
 <body class="home light-skin">
+
+  <?php
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $name    = $_POST['name'];
+    $email   = $_POST['email'];
+    $subject = $_POST['subject'];
+    $message = $_POST['message'];
+
+    $to = "kongseiha@gmail.com"; // Your email
+    $headers  = "From: $name <$email>\r\n";
+    $headers .= "Reply-To: $email\r\n";
+    $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
+
+    $body = "
+        <h3>New Contact Message</h3>
+        <p><strong>Name:</strong> $name</p>
+        <p><strong>Email:</strong> $email</p>
+        <p><strong>Subject:</strong> $subject</p>
+        <p><strong>Message:</strong><br>$message</p>
+    ";
+
+    if (mail($to, $subject, $body, $headers)) {
+        echo "Your message has been sent successfully!";
+    } else {
+        echo "Failed to send message. Please try again.";
+    }
+}
+
+?>
+
 	<div class="container-page">
 
 		<!-- Preloader -->
@@ -1389,48 +1420,53 @@
                 <div class="contacts-form scrolla-element-anim-1 scroll-animate" data-animate="active">
                   <div class="bg-img" style="background-image: url(assets/images/pat-1.png);"></div>
                   <div class="contacts-form">
-                    <form id="cform" method="post">
-                      <div class="row">
-                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                          <div class="group">
-                            <label>
-                              Your Full Name <b>*</b>
-                              <input type="text" name="name" >
-                            </label>
-                          </div>
-                        </div>
-                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                          <div class="group">
-                            <label>
-                              Your Email Address <b>*</b>
-                              <input type="email" name="email" >
-                            </label>
-                          </div>
-                        </div>
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                          <div class="group">
-                            <label>
-                              Your Subject <b>*</b>
-                              <input type="text" name="subject" >
-                            </label>
-                          </div>
-                        </div>
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                          <div class="group">
-                            <label>
-                              Your Message <b>*</b>
-                              <textarea name="message"></textarea>
-                            </label>
-                          </div>
-                        </div>
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 align-right">
-                          <div class="terms-label">* Accept the terms and conditions.</div>
-                          <a href="#" class="btn" onclick="$('#cform').submit(); return false;">
-                            <span>Send Message</span>
-                          </a>
-                        </div>
-                      </div>
-                    </form>
+                   <form id="cform" method="post" action="send.php">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+      <div class="group">
+        <label>
+          Your Full Name <b>*</b>
+          <input type="text" name="name" required>
+        </label>
+      </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+      <div class="group">
+        <label>
+          Your Email Address <b>*</b>
+          <input type="email" name="email" required>
+        </label>
+      </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="group">
+        <label>
+          Your Subject <b>*</b>
+          <input type="text" name="subject" required>
+        </label>
+      </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="group">
+        <label>
+          Your Message <b>*</b>
+          <textarea name="message" required></textarea>
+        </label>
+      </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 align-right">
+      <div class="terms-label">* Accept the terms and conditions.</div>
+      <a href="#" class="btn" onclick="document.getElementById('cform').submit(); return false;">
+        <span>Send Message</span>
+      </a>
+    </div>
+  </div>
+</form>
+
                     <div class="alert-success" style="display: none;">
                       <p>Thanks, your message is sent successfully.</p>
                     </div>
