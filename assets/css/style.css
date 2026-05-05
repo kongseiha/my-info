@@ -2518,13 +2518,13 @@ hr {
 }
 
 .section.hero-started .lui-subtitle {
-	font-size: 15px;
+	font-size: 10px;
 }
 
 .section.hero-started .label strong,
 .section.hero-started .label b {
 	font-family: 'Caveat';
-	font-size: 20px;
+	font-size: 30px;
 	font-weight: 700;
 	letter-spacing: 0;
 	text-transform: none;
