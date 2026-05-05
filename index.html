@@ -24,56 +24,103 @@
   <link rel="stylesheet" href="assets/css/style.css" type="text/css" media="all" >
   <link rel="stylesheet" href="assets/css/dark.css" type="text/css" media="all" >
 
-  <!-- CUSTOM RESUME & MOBILE FIXES CSS -->
+  <!-- CUSTOM "MY STORY" & MOBILE FIXES CSS -->
   <style>
-    /* Clean, responsive card style for Resume section */
-    .resume-card {
+    /* Clean "Story Card" style for Resume timeline */
+    .story-card {
         background: rgba(150, 150, 150, 0.05);
-        border: 1px solid rgba(150, 150, 150, 0.2);
+        border-left: 4px solid #29a587; /* Theme color timeline marker */
+        border-radius: 0 8px 8px 0;
         padding: 20px 25px;
-        border-radius: 12px;
         margin-top: 15px;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+        box-shadow: 0 2px 15px rgba(0,0,0,0.03);
+        transition: transform 0.3s ease;
     }
-    .resume-card h5 {
-        margin-bottom: 15px;
-        border-left: 4px solid #29a587; /* Theme green color */
-        padding-left: 10px;
-        font-size: 1.2em;
+    .story-card:hover {
+        transform: translateX(5px);
+        background: rgba(150, 150, 150, 0.08);
     }
-    .resume-card h6 {
+    .story-card h5 {
+        margin-bottom: 12px;
+        font-size: 1.1em;
+        font-weight: 600;
+        color: #29a587;
+    }
+    .story-card h6 {
         font-size: 1em;
         margin-top: 10px;
         margin-bottom: 5px;
-        color: #29a587;
+        color: inherit;
     }
-    .resume-card ul {
+    .story-card ul {
         list-style: disc;
         padding-left: 20px;
         line-height: 1.6;
         font-size: 14.5px;
     }
-    .resume-card li { margin-bottom: 8px; }
-    
-    /* Hover effect for certifications */
-    .cert-link {
-        display: block;
-        text-decoration: none;
-        color: inherit;
-        transition: all 0.3s ease;
-        padding: 10px 15px;
-        border-radius: 8px;
-        background: rgba(150, 150, 150, 0.03);
-        margin-bottom: 5px;
+    .story-card li { margin-bottom: 8px; }
+
+    /* New "Certifications Grid" Style */
+    .cert-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 15px;
+        margin-top: 20px;
+        margin-bottom: 20px;
     }
-    .cert-link:hover {
-        background: rgba(41, 165, 135, 0.1);
-        transform: translateX(5px);
+    .cert-card {
+        background: rgba(150, 150, 150, 0.05);
+        border: 1px solid rgba(150, 150, 150, 0.15);
+        padding: 15px 20px;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        text-decoration: none !important;
+        color: inherit !important;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+    .cert-card:hover {
+        transform: translateY(-5px);
+        border-color: #29a587;
+        box-shadow: 0 8px 20px rgba(41, 165, 135, 0.15);
+        background: rgba(41, 165, 135, 0.03);
+    }
+    .cert-card .cert-title {
+        font-size: 1em;
+        font-weight: 600;
+        margin-bottom: 8px;
+        line-height: 1.4;
+        padding-right: 20px;
+        font-family: 'Jost', sans-serif;
+    }
+    .cert-card .cert-date {
+        font-size: 0.8em;
+        color: #888;
+        margin-top: auto;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+    /* Small badge icon in the corner */
+    .cert-card::after {
+        content: "🏆";
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        font-size: 1.2em;
+        opacity: 0.5;
+        transition: opacity 0.3s ease;
+    }
+    .cert-card:hover::after {
+        opacity: 1;
     }
 
     /* Mobile specific adjustments */
     @media (max-width: 767px) {
-      .resume-card { padding: 15px; }
+      .story-card { padding: 15px; }
+      .cert-grid { grid-template-columns: 1fr; }
       img[alt="Telegram"] { width: 100% !important; max-width: 200px !important; height: auto !important; }
       .logo img { max-width: 100%; height: auto; }
     }
@@ -208,7 +255,7 @@
         </div>
 			</section>
       
-      <!-- Section - Resume -->
+      <!-- Section - Resume & My Story -->
 			<section class="lui-section lui-gradient-bottom" id="resume-section">
         <!-- Heading -->
         <div class="lui-heading">
@@ -224,7 +271,7 @@
           </div>
 				</div>
 
-        <!-- History -->
+        <!-- History Content -->
 				<div class="v-line v-line-left">
           <div class="container">
             <div class="row">
@@ -243,19 +290,19 @@
                       <div class="subname"><span>Build Bright University</span></div>
                       <div class="date lui-subtitle"><span>2015 - 2019</span></div>
                       <div class="text">
-                        <div>Bachelor of Engineering, Computer Science at Build Bright University Sihanoukville. Expected Graduation: 2019</div>
+                        <div>Bachelor of Engineering, Computer Science at Build Bright University Sihanoukville.</div>
                         
-                        <!-- New Resume Card Style -->
-                        <div class="resume-card">
+                        <!-- Story Card -->
+                        <div class="story-card">
                           <h5>Courses & Skills</h5>
                           <h6>Specialized</h6>
                           <div>Networks Administration, Software Engineering, Systems and Database Management</div>
-                          
+                          <br>
                           <h6>Key Courses</h6>
                           <div>Networking Administration, Cybersecurity, Web Development, Data Structures, Artificial Intelligence (AI)</div>
-                          
+                          <br>
                           <h6>Senior Project</h6>
-                          <div>Developed an <strong>Inventory System</strong> using <b>PHP Laravel</b>, <b>JavaScript</b>, and <b>MySQL Server</b> as a complete thesis project.</div>
+                          <div>Developed an <strong>Inventory System</strong> using PHP Laravel, JavaScript, and MySQL Server as a complete thesis project.</div>
                         </div>
 
                       </div>
@@ -271,7 +318,7 @@
                       <div class="text">
                         <div>Sihanoukville, Cambodia. Gained technical skills in multimedia, web design, and social media management.</div>
                         
-                        <div class="resume-card">
+                        <div class="story-card">
                           <h5>Courses & Skills</h5>
                           <ul>
                             <li><strong>Social Media Management:</strong> Experienced in managing social media platforms effectively.</li>
@@ -316,7 +363,7 @@
                       <div class="text">
                         <div><strong>Position:</strong> Leader NOC Network Engineer</div>
                         
-                        <div class="resume-card">
+                        <div class="story-card">
                           <h5>🗃 Responsibilities</h5>
                           <ul>
                             <li>Designed and implemented network structures according to business requirements.</li>
@@ -326,7 +373,6 @@
                             <li>Coordinated daily operations for NOC staff and assigned tasks efficiently.</li>
                             <li>Executed change management tasks including routing, firewall rules, VLAN, and QoS updates within maintenance devices.</li>
                             <li>Prepared daily, weekly, and monthly reports on incidents and uptime.</li>
-                            <li>Updated network diagrams, inventory, IP plans, device lists, and configuration backups.</li>
                             <li>Assisted IT team in hostel and casino management with network configuration and system administration.</li>
                           </ul>
                         </div>
@@ -344,7 +390,7 @@
                       <div class="text">
                         <div><strong>Position:</strong> Assistant Network Engineer</div>
                         
-                        <div class="resume-card">
+                        <div class="story-card">
                           <h5>🗃 Responsibilities</h5>
                           <ul>
                             <li>Designed network structures based on business requirements and project requests.</li>
@@ -369,12 +415,12 @@
                       <div class="text">
                         <div><strong>Position:</strong> IT Officer</div>
                         
-                        <div class="resume-card">
+                        <div class="story-card">
                           <h5>🗃 Responsibilities</h5>
                           <ul>
                             <li>Administered Windows Server 2012R2 controlling Active Directory Domain Services (AD DS).</li>
                             <li>Managed Ubuntu Server to host company web services, including Email Server and Corporate Website, using Nginx and UFW firewall.</li>
-                            <li>Maintained and troubleshot hardware and software issues on computers, printers, Wi-Fi access points, internet connections, CCTV network cameras, and attendance systems.</li>
+                            <li>Maintained and troubleshot hardware and software issues on computers, printers, Wi-Fi access points, internet connections, CCTV network cameras.</li>
                             <li>Provided technical support to staff, ensuring smooth daily IT operations and system availability.</li>
                           </ul>
                         </div>
@@ -389,7 +435,7 @@
                       <div class="text">
                         <div>IT Skills: Networking, Servers, Firewalls, VPNs, Hardware & Software Maintenance, Network Security, System Administration.</div>
                         
-                        <div class="resume-card">
+                        <div class="story-card">
                           <h5>🪃 Key Skills</h5>
                           <ul>
                             <li>Routers | Switches | OLT | Wireless & AP Management as Mikrotik, Cisco, Huawei, Unifi, Ruijie</li>
@@ -401,84 +447,110 @@
                             <li>Web Development: PHP Laravel, JavaScript, MySQL Server</li>
                             <li>CCTV Security Network Cameras (DVR, NVR, Discord)</li>
                             <li>Network monitoring and ticketing systems</li>
-                            <li>Strong communication, teamwork, and problem-solving skills for internet services</li>
                           </ul>
                         </div>
                       </div>
                     </div>
                   </div>
 
-                  <!-- Certifications -->
-                  <div class="history-item lui-collapse-item scrolla-element-anim-1 scroll-animate" data-animate="active">
-                    <h6 class="name lui-collapse-btn"><span>🍔 CERTIFICATIONS</span></h6>
-                    
-                    <a href="https://drive.google.com/file/d/1Nf2vfvepGJkuEWYg-enxM2Wnac68ZUTz/view?usp=sharing" target="_blank" class="cert-link">
-                      <div class="history-content"><div class="subname"><span>BBU Bachelor of Science in IT</span></div><div class="date lui-subtitle"><span>February 28, 2020</span></div></div>
-                    </a>
-                    
-                    <a href="https://www.credly.com/badges/2433746e-5202-4e69-9086-f6591d4b09e3" target="_blank" class="cert-link">
-                      <div class="history-content"><div class="subname"><span>Junior Cybersecurity Analyst Career Path</span></div><div class="date lui-subtitle"><span>October 23, 2025</span></div></div>
-                    </a>
-
-                    <a href="https://drive.google.com/file/d/1epSZeOjr2sFSKGlHYVJ_QrsnxSI8kdUZ/view?usp=sharing" target="_blank" class="cert-link">
-                      <div class="history-content"><div class="subname"><span>APNIC Cybersecurity Fundamentals</span></div><div class="date lui-subtitle"><span>November 11, 2025</span></div></div>
-                    </a>
-
-                    <a href="https://drive.google.com/file/d/1Wec0j2CZ9NjI7rWE3OsMT-k0jJUUywAt/view?usp=sharing" target="_blank" class="cert-link">
-                      <div class="history-content"><div class="subname"><span>APNIC Routing Fundamentals</span></div><div class="date lui-subtitle"><span>November 11, 2025</span></div></div>
-                    </a>
-
-                    <a href="https://drive.google.com/file/d/1OuReoGSaBpUX09ePx1QLUTt6tiT7B5Qh/view?usp=sharing" target="_blank" class="cert-link">
-                      <div class="history-content"><div class="subname"><span>APNIC OSPF Open Shortest Path First</span></div><div class="date lui-subtitle"><span>November 11, 2025</span></div></div>
-                    </a>
-
-                    <a href="https://drive.google.com/file/d/1rP1wt_QkKysyeAtSrASu9HaYSacEyoS6/view?usp=sharing" target="_blank" class="cert-link">
-                      <div class="history-content"><div class="subname"><span>APNIC Internet Resource Management</span></div><div class="date lui-subtitle"><span>November 12, 2025</span></div></div>
-                    </a>
-
-                    <a href="https://drive.google.com/file/d/15M_Fqy9044gbbxl6pIiC9kbgGXC0i4zA/view?usp=sharing" target="_blank" class="cert-link">
-                      <div class="history-content"><div class="subname"><span>APNIC IPv6 Address Planning</span></div><div class="date lui-subtitle"><span>November 13, 2015</span></div></div>
-                    </a>
-
-                    <a href="https://drive.google.com/file/d/1sPCY455ZUWpnxXrAELtJ98ykQw4e_Bnr/view?usp=sharing" target="_blank" class="cert-link">
-                      <div class="history-content"><div class="subname"><span>Mikrotik Switching</span></div><div class="date lui-subtitle"><span>November 12, 2025</span></div></div>
-                    </a>
-
-                    <a href="https://drive.google.com/file/d/1-HJkEz-Lv3BmiWHsPa2fLAuFje_VuU0o/view?usp=sharing" target="_blank" class="cert-link">
-                      <div class="history-content"><div class="subname"><span>Mikrotik ISP Core Network</span></div><div class="date lui-subtitle"><span>November 12, 2025</span></div></div>
-                    </a>
-
-                    <a href="https://drive.google.com/file/d/1vXLA0r0r5ufAcLSjfISpVYBWd4ZPxDSb/view?usp=sharing" target="_blank" class="cert-link">
-                      <div class="history-content"><div class="subname"><span>Mikrotik Internet Working Engineer</span></div><div class="date lui-subtitle"><span>November 12, 2025</span></div></div>
-                    </a>
-
-                    <a href="https://drive.google.com/file/d/1MY5VQuFz21gzFJW9xQ3Casmntlfl71G6/view?usp=sharing" target="_blank" class="cert-link">
-                      <div class="history-content"><div class="subname"><span>OSFP On Mikrotik V7</span></div><div class="date lui-subtitle"><span>November 12, 2025</span></div></div>
-                    </a>
-
-                    <a href="https://drive.google.com/file/d/1qST4xgL_YTmj3x1sQEqFdDCjYoOHEGrF/view?usp=sharing" target="_blank" class="cert-link">
-                      <div class="history-content"><div class="subname"><span>Cisco CCNA 200-301</span></div><div class="date lui-subtitle"><span>November 12, 2025</span></div></div>
-                    </a>
-
-                    <a href="https://drive.google.com/file/d/1JqV2JEMj8Tlm-1ugoeFnTFr-qGD--iki/view?usp=sharing" target="_blank" class="cert-link">
-                      <div class="history-content"><div class="subname"><span>Laravel Inventroy System</span></div><div class="date lui-subtitle"><span>November 12, 2025</span></div></div>
-                    </a>
-                  </div>
                 </div>
               </div>
             </div>
+
+            <!-- FULL WIDTH CERTIFICATIONS GRID (New "My Story" Style) -->
+            <div class="row">
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div style="margin-top: 40px;">
+                  <h5 class="history-title scrolla-element-anim-1 scroll-animate" data-animate="active" style="border-bottom: 2px solid rgba(150,150,150,0.2); padding-bottom: 10px;">
+                    <span> 🍔 Professional Certifications </span>
+                  </h5>
+                  
+                  <!-- Certifications CSS Grid -->
+                  <div class="cert-grid scrolla-element-anim-1 scroll-animate" data-animate="active">
+                    
+                    <a href="https://drive.google.com/file/d/1Nf2vfvepGJkuEWYg-enxM2Wnac68ZUTz/view?usp=sharing" target="_blank" class="cert-card">
+                      <span class="cert-title">BBU Bachelor of Science in IT</span>
+                      <span class="cert-date"><i class="far fa-calendar-alt"></i> February 28, 2020</span>
+                    </a>
+                    
+                    <a href="https://www.credly.com/badges/2433746e-5202-4e69-9086-f6591d4b09e3" target="_blank" class="cert-card">
+                      <span class="cert-title">Junior Cybersecurity Analyst Career Path</span>
+                      <span class="cert-date"><i class="far fa-calendar-alt"></i> October 23, 2025</span>
+                    </a>
+
+                    <a href="https://drive.google.com/file/d/1epSZeOjr2sFSKGlHYVJ_QrsnxSI8kdUZ/view?usp=sharing" target="_blank" class="cert-card">
+                      <span class="cert-title">APNIC Cybersecurity Fundamentals</span>
+                      <span class="cert-date"><i class="far fa-calendar-alt"></i> November 11, 2025</span>
+                    </a>
+
+                    <a href="https://drive.google.com/file/d/1Wec0j2CZ9NjI7rWE3OsMT-k0jJUUywAt/view?usp=sharing" target="_blank" class="cert-card">
+                      <span class="cert-title">APNIC Routing Fundamentals</span>
+                      <span class="cert-date"><i class="far fa-calendar-alt"></i> November 11, 2025</span>
+                    </a>
+
+                    <a href="https://drive.google.com/file/d/1OuReoGSaBpUX09ePx1QLUTt6tiT7B5Qh/view?usp=sharing" target="_blank" class="cert-card">
+                      <span class="cert-title">APNIC OSPF Open Shortest Path First</span>
+                      <span class="cert-date"><i class="far fa-calendar-alt"></i> November 11, 2025</span>
+                    </a>
+
+                    <a href="https://drive.google.com/file/d/1rP1wt_QkKysyeAtSrASu9HaYSacEyoS6/view?usp=sharing" target="_blank" class="cert-card">
+                      <span class="cert-title">APNIC Internet Resource Management</span>
+                      <span class="cert-date"><i class="far fa-calendar-alt"></i> November 12, 2025</span>
+                    </a>
+
+                    <a href="https://drive.google.com/file/d/15M_Fqy9044gbbxl6pIiC9kbgGXC0i4zA/view?usp=sharing" target="_blank" class="cert-card">
+                      <span class="cert-title">APNIC IPv6 Address Planning</span>
+                      <span class="cert-date"><i class="far fa-calendar-alt"></i> November 13, 2015</span>
+                    </a>
+
+                    <a href="https://drive.google.com/file/d/1sPCY455ZUWpnxXrAELtJ98ykQw4e_Bnr/view?usp=sharing" target="_blank" class="cert-card">
+                      <span class="cert-title">Mikrotik Switching</span>
+                      <span class="cert-date"><i class="far fa-calendar-alt"></i> November 12, 2025</span>
+                    </a>
+
+                    <a href="https://drive.google.com/file/d/1-HJkEz-Lv3BmiWHsPa2fLAuFje_VuU0o/view?usp=sharing" target="_blank" class="cert-card">
+                      <span class="cert-title">Mikrotik ISP Core Network</span>
+                      <span class="cert-date"><i class="far fa-calendar-alt"></i> November 12, 2025</span>
+                    </a>
+
+                    <a href="https://drive.google.com/file/d/1vXLA0r0r5ufAcLSjfISpVYBWd4ZPxDSb/view?usp=sharing" target="_blank" class="cert-card">
+                      <span class="cert-title">Mikrotik Internet Working Engineer</span>
+                      <span class="cert-date"><i class="far fa-calendar-alt"></i> November 12, 2025</span>
+                    </a>
+
+                    <a href="https://drive.google.com/file/d/1MY5VQuFz21gzFJW9xQ3Casmntlfl71G6/view?usp=sharing" target="_blank" class="cert-card">
+                      <span class="cert-title">OSFP On Mikrotik V7</span>
+                      <span class="cert-date"><i class="far fa-calendar-alt"></i> November 12, 2025</span>
+                    </a>
+
+                    <a href="https://drive.google.com/file/d/1qST4xgL_YTmj3x1sQEqFdDCjYoOHEGrF/view?usp=sharing" target="_blank" class="cert-card">
+                      <span class="cert-title">Cisco CCNA 200-301</span>
+                      <span class="cert-date"><i class="far fa-calendar-alt"></i> November 12, 2025</span>
+                    </a>
+
+                    <a href="https://drive.google.com/file/d/1JqV2JEMj8Tlm-1ugoeFnTFr-qGD--iki/view?usp=sharing" target="_blank" class="cert-card">
+                      <span class="cert-title">Laravel Inventory System</span>
+                      <span class="cert-date"><i class="far fa-calendar-alt"></i> November 12, 2025</span>
+                    </a>
+                  </div>
+                  <!-- End Certifications Grid -->
+
+                </div>
+              </div>
+            </div>
+
             <div class="lui-bgtitle"><span> History </span></div>
 					</div>
 				</div>
       </section>
 
-      <!-- Section - Testimonials -->
+      <!-- Section - Testimonials / What I Do -->
 			<section class="lui-section lui-gradient-center" id="testimonials-section">
         <div class="lui-heading">
           <div class="container">
             <div class="m-titles align-center">
               <h2 class="m-title splitting-text-anim-1 scroll-animate" data-splitting="words" data-animate="active"><span> WHAT CAN I DO </span></h2>
-              <div class="m-subtitle splitting-text-anim-1 scroll-animate" data-splitting="words" data-animate="active"><span> My <b>Experian</b></span></div>
+              <div class="m-subtitle splitting-text-anim-1 scroll-animate" data-splitting="words" data-animate="active"><span> My <b>Experience</b></span></div>
             </div>
           </div>
 				</div>
