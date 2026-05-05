@@ -2518,7 +2518,7 @@ hr {
 }
 
 .section.hero-started .lui-subtitle {
-	font-size: 10px;
+	font-size: 15px;
 }
 
 .section.hero-started .label strong,
@@ -2534,7 +2534,7 @@ hr {
 
 .section.hero-started .description {
 	padding: 40px 0 40px 0;
-	font-size: 18px;
+	font-size: 10px;
 	max-width: 520px;
 }
 
